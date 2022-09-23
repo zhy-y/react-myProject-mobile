@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const address = [
+        {
+          id: 1,
+          name: '北京市',
+          children: [
+            {
+              id: 11,
+              name: '海淀区',
+              children: [
+                {
+                  id: 111,
+                  name: '中关村'
+                }
+              ]
+            },
+            {
+              id: 12,
+              name: '朝阳区'
+            }
+          ]
+        },
+        {
+          id: 2,
+          name: '河北省'
+        }
+      ]
+
+      function getNameById(address, id) {
+        let res = ''
+        address.forEach((item) => {
+          if (item.id === id) {
+            res = item.name
+          } else if (item.children) {
+            res = getNameById(item.children, id)
+          }
+        })
+        return res
+      }
+      //   function getNameById(address, id) {
+      //     var rx = new RegExp('"id":'+ id +',"name":"(.*?)"');//使用正则
+      //     console.log(rx);
+      //     var result = rx.exec(JSON.stringify(address));
+      //     console.log(result);
+      //     if(result!=null)
+      //         return result[1];
+      //     else
+      //         return null
+      //   }
+
+      console.log(getNameById(address, 12))
+
+      function all(list) {
+        return new Promise((resolve, reject) => {
+          let arr = []
+          let count = 0
+          list.forEach((item, index) => {
+            item
+              .then((value) => {
+                arr[index] = value
+                count++
+                if (count === list.length) {
+                  resolve(arr)
+                }
+              })
+              .catch((err) => reject(err))
+          })
+        })
+      }
+
+      const list2 = [
+        {
+          id: 1,
+          name: '1级1',
+          parentId: 0
+        },
+        {
+          id: 2,
+          name: '2级1',
+          parentId: 0
+        },
+        {
+          id: 4,
+          name: '1级1-1',
+          parentId: 1
+        },
+        {
+          id: 6,
+          name: '1级1-1-1',
+          parentId: 4
+        },
+        {
+          id: 12,
+          name: '2级1-1',
+          parentId: 2
+        },
+        {
+          id: 13,
+          name: '3级1',
+          parentId: 0
+        },
+        {
+          id: 14,
+          name: '3级1-1',
+          parentId: 13
+        },
+        {
+          id: 15,
+          name: '1级1-1-1-1',
+          parentId: 6
+        }
+      ]
+
+      // 树形数据
+      const dataToTree = (list, parentId = 0) => {
+        const handlelist = []
+        list.forEach((item) => {
+          if (parentId === item.parentId) {
+            const children = dataToTree(list, item.id)
+            if (children.length > 0) {
+              item.children = children
+            }
+            handlelist.push(item)
+          }
+        })
+        return handlelist
+      }
+      console.log(dataToTree(list2))
+
+      // 重复次数
+      //   var str = 'hello world'
+      //   var arr = str.split('')
+      //   console.log(arr)
+
+      //   var arr2 = []
+      //   let res = []
+      //   for (var j = 0; j <= arr.length - 1; j++) {
+      //     for (var i = j + 1, count = 1; i <= arr.length - 1; i++) {
+      //       if (arr[j] === arr[i]) {
+      //         arr.splice(i, 1)
+      //         count++
+      //       }
+      //     }
+      //     console.log(count)
+      //   }
+      //   console.log(arr);
+      function repeat(arr) {
+        let result = []
+        arr.forEach((item) => {
+          // 有重复项，且重复num次
+          let num = arr.filter((n) => n === item).length
+          // 将重复数以对象形式存储
+          if (!result.find((m) => m.name === item) && num > 1) {
+            result.push({
+              name: item,
+              size: num
+            })
+          }
+        })
+
+        // 根据size排序
+        result.sort((a, b) => {
+          return b.size - a.size
+        })
+
+        return result
+      }
+      console.log(repeat([1, 4, 4, 4, 2, 3, 3, 5, 5, 3]))
+
+      // 对比数组
+      let array1 = [
+        { id: '50', active: 'a', value: 10 },
+        { id: '51', active: 'a', value: 11 }
+      ]
+      let array2 = [
+        { id: '53', active: 'a', value: 10 },
+        { id: '51', active: 'a', value: 11 },
+        { id: '52', active: 'a', value: 13 }
+      ]
+
+      let res = array2.filter((val) =>{ 
+        return array1.some(({ value }) => val.value === value)
+      })
+      console.log("1", JSON.stringify(res));
+
+    // 递归
+    const deepClone = (obj) => {
+        let temp = {}
+        for(let k in obj){
+            if(typeof obj[k] === 'object'){
+                temp[k] = deepClone(obj[k])
+            }else{
+                temp[k] = obj[k]
+            }
+        }
+        return temp
+    }
+    console.log(deepClone(dataToTree(list2)));
+    </script>
+  </body>
+</html>

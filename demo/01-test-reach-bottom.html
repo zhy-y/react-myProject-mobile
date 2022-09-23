@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .list-container {
+            border: 1px solid red;
+            height: 500px;
+            width: 400px;
+            overflow: auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="container" class="list-container">
+
+        <div class="liat-item">
+            <h4>标题xxxx</h4>
+            <p>正文ppppppp</p>
+        </div>
+        
+
+        <div class="liat-item">
+            <h4>标题xxxx</h4>
+            <p>正文ppppppp</p>
+        </div>
+        
+
+        <div class="liat-item">
+            <h4>标题xxxx</h4>
+            <p>正文ppppppp</p>
+        </div>
+        
+
+        <div class="liat-item">
+            <h4>标题xxxx</h4>
+            <p>正文ppppppp</p>
+        </div>
+        
+
+        <div class="liat-item">
+            <h4>标题xxxx</h4>
+            <p>正文ppppppp</p>
+        </div>
+        
+
+        <div class="liat-item">
+            <h4>标题xxxx</h4>
+            <p>正文ppppppp</p>
+        </div>
+        
+
+        <div class="liat-item">
+            <h4>标题xxxx</h4>
+            <p>正文ppppppp</p>
+        </div>
+        
+
+        <div class="liat-item">
+            <h4>标题xxxx</h4>
+            <p>正文ppppppp</p>
+        </div>
+        
+
+        <div class="liat-item">
+            <h4>标题xxxx</h4>
+            <p>正文ppppppp</p>
+        </div>
+        
+
+        <div class="liat-item">
+            <h4>标题xxxx</h4>
+            <p>正文ppppppp</p>
+        </div>
+        
+
+        <div class="liat-item">
+            <h4>标题xxxx</h4>
+            <p>正文ppppppp</p>
+        </div>
+    </div>
+
+    <script>
+        const container = document.getElementById('container')
+        container.addEventListener('scroll', () => {
+            //  ---- 上拉加载更多、下拉刷新更多 ----
+            // 容器中内容的滚动量
+            const scrollTop = container.scrollTop
+            const offsetHeight = container.offsetHeight // 容器的自身高度
+            const scrollHeight = container.scrollHeight // 容器内容的总高度
+            console.log('>>>', container.scrollTop, scrollHeight, offsetHeight);
+           
+            // 即 内容滚动距离超过：内容总高度 - 容器高度
+            if(scrollTop >= scrollHeight - 500){
+                console.log('>>>到底部了')
+                // 发请求，获取数据后生成列表项，插入到列表中
+                // .......
+            }
+        })
+    </script>
+</body>
+</html>

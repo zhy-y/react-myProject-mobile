@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            width: 400px;
+            height: 600px;
+            border: 1px solid blue;
+            overflow: auto;
+        }
+        .item {
+            background-color: yellow;
+            border: 1px solid red;
+            margin: 5px;
+        }
+        .spec{
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="item">元素11111</div>
+        
+        <div class="item">元素11111</div>
+        
+        <div class="item">元素11111</div>
+        
+        <div class="item">元素11111</div>
+        
+        <div class="item">元素11111</div>
+        
+        <div class="item">元素11111</div>
+        
+        <div class="item">元素11111</div>
+        
+        <div class="item">元素11111</div>
+        
+        <div class="item">元素11111</div>
+        
+        <div class="item">元素11111</div>
+        
+        <div class="item">元素11111</div>
+        
+        <div class="item">元素11111</div>
+        
+        <div class="item">元素11111</div>
+        
+        <div class="item">元素11111</div>
+        
+        <div class="item">元素11111</div>
+        
+        <div class="item">元素11111</div>
+        
+        <div class="item">元素11111</div>
+        
+        <div class="item">元素11111</div>
+        
+        <div class="item">元素11111</div>
+        
+        <div class="item">元素11111</div>
+        
+        <div class="item">元素11111</div>
+        
+        <div class="item">元素11111</div>
+        
+        <div class="item">元素11111</div>
+        
+        <div class="item">元素11111</div>
+        
+        <div class="item">元素11111</div>
+        
+        <div class="item">元素11111</div>
+        
+        <div class="item spec">元素11111</div>
+        
+        <div class="item">元素11111</div>
+        
+        <div class="item">元素11111</div>
+        
+        <div class="item">元素11111</div>
+
+    </div>
+
+    <script>
+        // ---- 图片懒加载原理 -----
+        // 浏览器BOM自带的 intersectionObserver，监听元素是否进入容器的可视区域
+        // 用于创建一个 observer 实例 -- 相当于创建一个监听器
+        //  -- entries代表和容器相交的元素
+        const observer = new IntersectionObserver((entries) => {
+            console.log(entries)    // [IntersectionObserverEntry]
+        })
+        // 设置监听的对象
+        observer.observe(document.querySelector('.spec'))
+    </script>
+</body>
+</html>
