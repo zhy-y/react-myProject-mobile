@@ -1,0 +1,48 @@
+// 覆盖 Antd-mobile中原来的CSS变量
+:root:root {
+  --adm-color-primary: #fc6627;
+  --adm-color-success: #00b578;
+  --adm-color-warning: #ff8f1f;
+  --adm-color-danger: #ff3141;
+  --adm-color-white: #ffffff;
+  --adm-color-weak: #999999;
+  --adm-color-light: #cccccc;
+  --adm-border-color: #eeeeee;
+  --adm-font-size-main: 13px;
+  --adm-color-text: #333333;
+}
+
+// 重置样式
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body,
+#root {
+  height: 100%; // 移动端屏幕上下撑满
+}
+
+p,
+h2,
+h3 {
+  margin: 0;
+}
+
+// iconfont 样式
+.icon {
+  width: 1em; 
+  height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
